@@ -3,9 +3,9 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
   <item android:id="@android:id/secondaryProgress">
     <shape
-        android:innerRadius="75dp"
+        android:innerRadius="@dimen/progress_radius"
         android:shape="ring"
-        android:thickness="10dp"
+        android:thickness="@dimen/progress_thickness"
         android:thicknessRatio="20.0"
         android:useLevel="true">
       <solid android:color="@android:color/transparent" />
@@ -20,11 +20,11 @@
         android:toDegrees="270">
 
       <shape
-          android:innerRadius="75dp"
+          android:innerRadius="@dimen/progress_radius"
           android:shape="ring"
-          android:thickness="10dp"
+          android:thickness="@dimen/progress_thickness"
           android:useLevel="true">
-        <solid android:color="#3333ff" />
+        <solid android:color="@color/blue" />
       </shape>
     </rotate>
   </item>
