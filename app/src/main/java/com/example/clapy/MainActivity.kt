@@ -55,6 +55,7 @@ private  val pathAnimationListener = object : Animator.AnimatorListener {
 
 }
 
+private var clapCount = 0
 private var clapImageView: ImageView? = null
 
 override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,7 +95,10 @@ private fun performScaleDownAnimation() {
 }
 
 private fun incrementClapProgress() {
-  clapProgressBar.progress++
+  clapCount++
+  if (clapCount > 1) {
+    clapProgressBar.progress = clapCount
+  }
 }
 private fun addNewClap() {
 
