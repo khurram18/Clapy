@@ -6,7 +6,6 @@
         android:innerRadius="@dimen/progress_radius"
         android:shape="ring"
         android:thickness="@dimen/progress_thickness"
-        android:thicknessRatio="20.0"
         android:useLevel="true">
       <solid android:color="@android:color/transparent" />
     </shape>
