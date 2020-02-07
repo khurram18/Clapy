@@ -1,11 +1,18 @@
 package com.example.clapy
 
+import android.animation.Animator
+import android.graphics.Path
 import android.os.Bundle
 import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintSet
+import androidx.core.view.ViewCompat
+import com.example.clapy.helper.ObjectAnimatorCompat
 import kotlinx.android.synthetic.main.activity_main.clapButton
 import kotlinx.android.synthetic.main.activity_main.clapProgressBar
+import kotlinx.android.synthetic.main.activity_main.rootLayout
 
 // Clap image taken from Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 class MainActivity : AppCompatActivity() {
@@ -27,10 +34,29 @@ private val scaleDownAnimationListener = object : Animation.AnimationListener {
 
   override fun onAnimationEnd(p0: Animation?) {
     incrementClapProgress()
+    addNewClap()
   }
 
   override fun onAnimationStart(p0: Animation?) {}
 }
+
+private  val pathAnimationListener = object : Animator.AnimatorListener {
+
+  override fun onAnimationRepeat(p0: Animator?) {}
+
+  override fun onAnimationEnd(p0: Animator?) {
+    clapImageView?.let {
+      rootLayout.removeView(it)
+    }
+  }
+
+  override fun onAnimationCancel(p0: Animator?) {}
+
+  override fun onAnimationStart(p0: Animator?) {}
+
+}
+
+private var clapImageView: ImageView? = null
 
 override fun onCreate(savedInstanceState: Bundle?) {
   super.onCreate(savedInstanceState)
@@ -74,6 +100,23 @@ private fun incrementClapProgress() {
 }
 private fun addNewClap() {
 
+  val imageView = ImageView(this)
+  imageView.id = ViewCompat.generateViewId()
+  imageView.setImageResource(R.drawable.clap)
+  rootLayout.addView(imageView)
+
+  val constraintSet = ConstraintSet()
+  constraintSet.clone(rootLayout)
+  constraintSet.connect(imageView.id, ConstraintSet.START, rootLayout.id, ConstraintSet.START)
+
+  val path = Path()
+  path.addCircle((rootLayout.width / 2).toFloat(), (rootLayout.height / 2).toFloat(), 200f, Path.Direction.CW)
+
+  val animator = ObjectAnimatorCompat.ofFloat(imageView, "translationX", "translationY", path)
+  animator.duration = 1000
+  animator.addListener(pathAnimationListener)
+  animator.start()
+  clapImageView = imageView
 }
 }
 
