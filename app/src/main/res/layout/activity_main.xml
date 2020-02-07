@@ -31,6 +31,8 @@
       android:progressDrawable="@drawable/progress"
       android:secondaryProgress="100"
       android:indeterminate="false"
+      android:progress="0"
+      android:max="100"
       app:layout_constraintLeft_toLeftOf="@+id/clapButton"
       app:layout_constraintRight_toRightOf="@+id/clapButton"
       app:layout_constraintTop_toTopOf="@+id/clapButton"

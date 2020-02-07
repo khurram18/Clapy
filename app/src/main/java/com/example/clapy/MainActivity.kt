@@ -94,8 +94,7 @@ private fun performScaleDownAnimation() {
 }
 
 private fun incrementClapProgress() {
-  val progress = clapProgressBar.progress
-  clapProgressBar.progress = progress + 1
+  clapProgressBar.progress++
 }
 private fun addNewClap() {
 
