@@ -14,7 +14,6 @@ import kotlinx.android.synthetic.main.activity_main.clapButton
 import kotlinx.android.synthetic.main.activity_main.clapProgressBar
 import kotlinx.android.synthetic.main.activity_main.rootLayout
 
-// Clap image taken from Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 class MainActivity : AppCompatActivity() {
 
 private val scaleUpAnimationListener = object : Animation.AnimationListener {
